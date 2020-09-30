@@ -1,0 +1,28 @@
+input {
+  width: 70%;
+  border: 2px solid #2ECC71;
+  border-radius: 20px;
+  outline: none;
+  position: relative;
+}
+
+input:active, input:focus {
+  border: 2px solid #CF2934;
+  outline: none;
+}
+
+input.form-control:focus {
+  box-shadow: none;
+}
+
+.btn-apply {
+  background: #2ECC71;
+  border-radius: 20px;
+  margin: 10px 0;
+  color: #fff;
+  padding: 7px 25px;
+}
+
+.hidden {
+  visibility: hidden;
+}

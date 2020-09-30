@@ -1,0 +1,17 @@
+ul {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+}
+li {
+  display: inline;
+}
+
+span {
+  display: inline;
+}
+
+.count {
+  display: inline-block;
+  float: right;
+}

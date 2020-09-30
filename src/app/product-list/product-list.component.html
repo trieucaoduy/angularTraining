@@ -1,0 +1,26 @@
+<div class="card" *ngFor="let product of products">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-4">
+        <img width="150px" [src]="product.thumbail" [alt]="product.name" />
+      </div>
+      <div class="col-4">
+        <h5 class="name"> {{ product.name }} </h5>
+        <p class="description"> {{ product.description }} </p>
+        <p class="price"> {{ product.price }}$ </p>
+      </div>
+      <div class="col-2">
+        <input
+          type="number"
+          style="width: 50px"
+          name="amount"
+          id="amount"
+          class="form-control"
+        />
+      </div>
+      <div class="col-2">
+        X
+      </div>
+    </div>
+  </div>
+</div>
