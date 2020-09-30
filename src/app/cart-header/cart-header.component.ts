@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-cart-header',
@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartHeaderComponent implements OnInit {
   title = "Shopping Cart"
-  countItems: number = 2;
+  @Input() countItems: number;
 
   constructor() { }
 

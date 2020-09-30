@@ -1,3 +1,9 @@
 .col {
   text-align: right;
 }
+
+p {
+  font-weight: 500;
+  text-align: left;
+  margin-bottom: 5px;
+}

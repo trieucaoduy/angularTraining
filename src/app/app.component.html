@@ -3,15 +3,28 @@
 <main>
   <div class="container-fluid" style="width: 60%">
     <section class="container">
-      <app-cart-header></app-cart-header>
+      <app-cart-header [countItems]="countItems"></app-cart-header>
     </section>
 
     <section class="container">
-      <app-product-list></app-product-list>
+      <app-product-list
+        [products]="products"
+        (onRemoveProducts)="removeProducts($event)">
+      </app-product-list>
     </section>
 
     <section class="container">
-      <app-cart-footer></app-cart-footer>
+      <div class="cart-footer">
+        <div class="row">
+          <div class="col-6">
+            <app-promo-code></app-promo-code>
+          </div>
+          <div class="col-6">
+            <app-cart-summary [subTotal]="subTotal"></app-cart-summary>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-checkout">Checkout</button>
     </section>
   </div>
 </main>

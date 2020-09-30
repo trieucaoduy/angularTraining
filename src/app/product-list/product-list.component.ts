@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Products } from '../product.model';
 
 @Component({
@@ -8,27 +8,19 @@ import { Products } from '../product.model';
 })
 export class ProductListComponent implements OnInit {
 
-  countItem: number;
+  @Input() products
+  @Output() onRemoveProducts = new EventEmitter()
+  @Output() onUpdateQuantity = new EventEmitter()
 
-  products: Products[] = [
-    {
-      id: "0",
-      name: "iBasso DX160 2020",
-      description: "DAP iBasso DX160 2020",
-      thumbail: "/assets/ibasso-dx160.jpg",
-      price: 890,
-      quantity: 2
-    },
-    {
-      id: "1",
-      name: "JBL T450",
-      description: "Headphone overear JBL T450",
-      thumbail: "/assets/jbl-t450.jpg",
-      price: 475,
-      quantity: 5
-    }
-  ]
+  removeProduct(productId:string): void {
+    this.onRemoveProducts.emit(productId)
+  }
 
+  updateQuantity(data): void {
+    console.log(data.value);
+    console.log(data.id);
+    this.onUpdateQuantity.emit(data.value);
+  }
 
   constructor() { }
 

@@ -11,15 +11,18 @@
       </div>
       <div class="col-2">
         <input
+          #inputQuantityProducts
           type="number"
           style="width: 50px"
-          name="amount"
-          id="amount"
+          name="quantity"
+          [id]="product.id"
           class="form-control"
+          [value]="product.quantity"
+          (input)="updateQuantity(inputQuantityProducts)"
         />
       </div>
       <div class="col-2">
-        X
+        <i class="fas fa-times-circle" (click)="removeProduct(product.id)"></i>
       </div>
     </div>
   </div>
