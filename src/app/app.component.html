@@ -1,26 +1,31 @@
-<app-header></app-header>
-
 <main>
   <div class="container-fluid" style="width: 60%">
     <section class="container">
-      <app-cart-header [countItems]="countItems"></app-cart-header>
+      <app-cart-header [countItems]="countItems || 0"></app-cart-header>
     </section>
 
     <section class="container">
       <app-product-list
         [products]="products"
-        (onRemoveProducts)="removeProducts($event)">
+        (onRemoveProducts)="removeProducts($event)"
+        (onUpdateQuantity)="updateQuantity($event)">
       </app-product-list>
+
+      <div class="card" *ngIf="products.length === 0">
+        <div class="card-body">
+          <h3>There is no product in your cart.</h3>
+        </div>
+      </div>
     </section>
 
     <section class="container">
       <div class="cart-footer">
         <div class="row">
           <div class="col-6">
-            <app-promo-code></app-promo-code>
+            <app-promo-code (onApplyPromoCode)="applyPromoCode($event)"></app-promo-code>
           </div>
           <div class="col-6">
-            <app-cart-summary [subTotal]="subTotal"></app-cart-summary>
+            <app-cart-summary [subTotal]="subTotal" [discount]="discount" [total]="total"></app-cart-summary>
           </div>
         </div>
       </div>
@@ -28,5 +33,3 @@
     </section>
   </div>
 </main>
-
-<app-footer></app-footer>

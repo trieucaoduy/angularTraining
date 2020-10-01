@@ -12,14 +12,14 @@ export class ProductListComponent implements OnInit {
   @Output() onRemoveProducts = new EventEmitter()
   @Output() onUpdateQuantity = new EventEmitter()
 
-  removeProduct(productId:string): void {
+  removeProduct(productId:number): void {
     this.onRemoveProducts.emit(productId)
   }
 
-  updateQuantity(data): void {
-    console.log(data.value);
-    console.log(data.id);
-    this.onUpdateQuantity.emit(data.value);
+  updateQuantity(id: number, inputQuantityProducts: HTMLInputElement): void {
+    if(inputQuantityProducts.value < "0") inputQuantityProducts.value = "0";
+
+    this.onUpdateQuantity.emit({id, quantity: parseInt(inputQuantityProducts.value)});
   }
 
   constructor() { }

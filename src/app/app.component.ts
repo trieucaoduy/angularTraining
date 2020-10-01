@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Products } from './product.model';
-import { Promocode } from './promocode.mode';
+import { PromoCodes } from './promocode.model';
 
 @Component({
   selector: 'app-root',
@@ -13,70 +13,26 @@ export class AppComponent implements OnInit{
     this.updateCartSumary();
   }
 
-  countItems: number = 0
-  subTotal: number = 0
-  discountPercent: number = 0
-  discount: number = 0
-  taxPercent: number = 10
-  tax: number = 0
+  countItems: number = 0;
+  subTotal: number = 0;
+  discountPercent: number = 0;
+  discount: number = 0;
+  total: number = 0;
 
-  promoCodes: Promocode[] = [
+  promoCodes: PromoCodes[] = [
     {
       code: 'DISCOUNT',
       discountPercent: 50
+    },
+    {
+      code: 'SALE',
+      discountPercent: 20
     }
   ];
 
-  updateCartSumary() {
-    let countItems = 0;
-    let subTotal = 0;
-
-    for (const product of this.products) {
-      countItems += product.quantity;
-      subTotal += product.price * product.quantity;
-    }
-
-    this.countItems = countItems;
-    this.subTotal = subTotal;
-  }
-
-  removeProducts(productId: string) {
-    const index = this.products.findIndex(products => products.id === productId);
-    if (index != -1) {
-      this.products.splice(index, 1);
-    }
-
-    this.updateCartSumary();
-  }
-
-  updateQuantity(data: {id: string, value: number}) {
-    const product = this.products.find(products => products.id === data.id);
-    if(product) {
-      product.quantity = data.value || 0;
-    }
-
-    this.updateCartSumary();
-  }
-
-  applyPromoCode(code: string) {
-    const promoCode = this.promoCodes.find(
-      promoCode => promoCode.code === code
-    );
-
-    this.discountPercent = promoCode ? promoCode.discountPercent : 0;
-    this.discount = (this.subTotal * this.discountPercent) / 100;
-
-    if (this.discount > 0) {
-      alert(`The promotional code was applied.`);
-    }
-    else {
-      alert(`Sorry, the promotion code you entered is not valid! Try code "DISCOUNT"`)
-    }
-  }
-
   products: Products[] = [
     {
-      id: "0",
+      id: 0,
       name: "iBasso DX160 2020",
       description: "DAP iBasso DX160 2020",
       thumbail: "/assets/ibasso-dx160.jpg",
@@ -84,7 +40,7 @@ export class AppComponent implements OnInit{
       quantity: 1
     },
     {
-      id: "1",
+      id: 1,
       name: "JBL T450",
       description: "Headphone overear JBL T450",
       thumbail: "/assets/jbl-t450.jpg",
@@ -92,4 +48,66 @@ export class AppComponent implements OnInit{
       quantity: 1
     }
   ]
+
+  getProducts(): Products[] {
+    return this.products;
+  }
+
+  findById(id: number): Products {
+    return this.products.find(product => product.id === id);
+  }
+
+  findIndexById(id: number): number {
+    return this.products.findIndex(product => product.id === id);
+  }
+
+  findCode(code: string): PromoCodes {
+    return this.promoCodes.find(promocode => promocode.code === code)
+  }
+
+  updateCartSumary() {
+    this.countItems = 0;
+    this.subTotal = 0;
+
+    for (const product of this.products) {
+      this.countItems += product.quantity;
+      this.subTotal += product.price * product.quantity;
+    }
+
+    this.discount = (this.subTotal * this.discountPercent) / 100;
+    this.total = this.subTotal - this.discount;
+  }
+
+  removeProducts(productId: number) {
+    const index = this.findIndexById(productId);
+    if (index !== -1) {
+      this.products.splice(index, 1);
+    }
+    this.updateCartSumary();
+    alert (`Xoá thành công`);
+  }
+
+  updateQuantity(data: {id: number, quantity:number }) {
+    const product = this.findById(data.id);
+
+    if (product) {
+      product.quantity = data.quantity || 0;
+    }
+    this.updateCartSumary();
+  }
+
+  applyPromoCode(codeInput: string) {
+    const promoCode = this.findCode(codeInput);
+
+    this.discountPercent = promoCode ? promoCode.discountPercent : 0;
+    this.discount = (this.subTotal * this.discountPercent) / 100;
+
+    if (this.discount > 0) {
+      alert(`The code was applied!`);
+    }
+    else {
+      alert(`Sorry, this code was wrong. Please try again!`);
+    }
+  }
+
 }

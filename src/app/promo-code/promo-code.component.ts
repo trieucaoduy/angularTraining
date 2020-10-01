@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-promo-code',
@@ -7,13 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PromoCodeComponent implements OnInit {
 
-  isHidden = true;
+  promoCode: string;
 
-  promoCode = '';
+  @Output() onApplyPromoCode = new EventEmitter();
 
-  addPromoCode() {
-    this.isHidden = !this.isHidden;
-    console.log('Code have added!')
+  applyPromoCode(codeInput: HTMLInputElement) {
+
+    this.onApplyPromoCode.emit(codeInput.value);
+    // const code = this.promoCode;
+
+    // if (code) {
+    //   this.onApplyPromoCode.emit(code);
+    // }
   }
 
   constructor() { }

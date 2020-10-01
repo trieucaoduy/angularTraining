@@ -18,3 +18,7 @@ input[type=number] {
   font-weight: bold;
   margin-bottom: 10px;
 }
+
+i {
+  color: #d35400;
+}

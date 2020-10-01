@@ -1,4 +1,4 @@
-export class Promocode {
+export class PromoCodes {
   code: string
   discountPercent: number
 }

@@ -7,9 +7,9 @@
       <div class="col-4">
         <h5 class="name"> {{ product.name }} </h5>
         <p class="description"> {{ product.description }} </p>
-        <p class="price"> {{ product.price }}$ </p>
+        <p class="price"> {{ product.price | currency }} </p>
       </div>
-      <div class="col-2">
+      <div class="col-2" style="margin: auto 0">
         <input
           #inputQuantityProducts
           type="number"
@@ -18,10 +18,10 @@
           [id]="product.id"
           class="form-control"
           [value]="product.quantity"
-          (input)="updateQuantity(inputQuantityProducts)"
+          (input)="updateQuantity(product.id, inputQuantityProducts)"
         />
       </div>
-      <div class="col-2">
+      <div class="col-2" style="margin: auto 0">
         <i class="fas fa-times-circle" (click)="removeProduct(product.id)"></i>
       </div>
     </div>

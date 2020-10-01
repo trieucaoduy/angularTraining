@@ -1,8 +1,12 @@
 <div class="col-8">
   <h5>Have a promo code?</h5>
-  <input type="text" name="code" class="form-control" />
-  <h1 [class.hidden]="isHidden">{{ promoCode }}</h1>
-  <button class="btn btn-apply" (click)="addPromoCode()">
-    {{ isHidden ? "Apply" : "Remove Code" }}
-  </button>
+  <input
+    #codeInput
+    type="text"
+    name="code"
+    (keyup.enter)="applyPromoCode(codeInput)"
+    class="form-control"
+  />
+  <h1 [class.hidden]>{{ promoCode }}</h1>
+  <button class="btn btn-apply" (click)="applyPromoCode(codeInput)">Apply Code</button>
 </div>
