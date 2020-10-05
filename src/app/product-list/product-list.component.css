@@ -22,3 +22,7 @@ input[type=number] {
 i {
   color: #d35400;
 }
+
+.checkbox {
+  margin: 0 20px;
+}

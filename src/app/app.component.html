@@ -8,7 +8,9 @@
       <app-product-list
         [products]="products"
         (onRemoveProducts)="removeProducts($event)"
-        (onUpdateQuantity)="updateQuantity($event)">
+        (onUpdateQuantity)="updateQuantity($event)"
+        (onCheckAll)="checkAll($event)"
+      >
       </app-product-list>
 
       <div class="card" *ngIf="products.length === 0">
@@ -22,14 +24,25 @@
       <div class="cart-footer">
         <div class="row">
           <div class="col-6">
-            <app-promo-code (onApplyPromoCode)="applyPromoCode($event)"></app-promo-code>
+            <app-promo-code
+              (onApplyPromoCode)="applyPromoCode($event)"
+            ></app-promo-code>
           </div>
           <div class="col-6">
-            <app-cart-summary [subTotal]="subTotal" [discount]="discount" [total]="total"></app-cart-summary>
+            <app-cart-summary
+              [subTotal]="subTotal"
+              [discount]="discount"
+              [total]="total"
+            ></app-cart-summary>
           </div>
         </div>
       </div>
-      <button type="submit" class="btn btn-checkout">Checkout</button>
+      <div class="cart-button">
+        <button type="submit" class="btn btn-checkout" (click)="deleteCart()">
+          Clear
+        </button>
+        <button type="submit" class="btn btn-checkout">Checkout</button>
+      </div>
     </section>
   </div>
 </main>

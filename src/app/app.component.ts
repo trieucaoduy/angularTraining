@@ -46,6 +46,14 @@ export class AppComponent implements OnInit{
       thumbail: "/assets/jbl-t450.jpg",
       price: 475,
       quantity: 1
+    },
+    {
+      id: 2,
+      name: "iPhone 12",
+      description: "iPhone 12",
+      thumbail: "/assets/iphone-12.jpg",
+      price: 975,
+      quantity: 1
     }
   ]
 
@@ -63,6 +71,23 @@ export class AppComponent implements OnInit{
 
   findCode(code: string): PromoCodes {
     return this.promoCodes.find(promocode => promocode.code === code)
+  }
+
+  checkList = [];
+
+  checkAll(checkList: any) {
+    this.checkList = checkList;
+  }
+
+  deleteCart() {
+    for (let i in this.checkList) {
+      if (this.checkList[i] === true) {
+        const index = this.findIndexById(parseInt(i));
+        if(index !== -1) {
+          this.products.splice(index, 1);
+        }
+      }
+    }
   }
 
   updateCartSumary() {

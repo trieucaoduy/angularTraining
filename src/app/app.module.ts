@@ -7,6 +7,8 @@ import { CartSummaryComponent } from './cart-summary/cart-summary.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { PromoCodeComponent } from './promo-code/promo-code.component';
 
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +18,8 @@ import { PromoCodeComponent } from './promo-code/promo-code.component';
     PromoCodeComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

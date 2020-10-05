@@ -9,16 +9,19 @@
 .btn {
   padding: 0.375rem 1.75rem;
   border-radius: 15px;
-  float: right;
   text-transform: uppercase;
 }
 
 .btn-checkout {
   background: #CF2934;
   color: #fff;
-  margin: 20px 0;
+  margin: 20px 0 0 10px;
 }
 
 .btn-checkout:hover {
   color: #fff;
+}
+
+.cart-button {
+  text-align: right;
 }
